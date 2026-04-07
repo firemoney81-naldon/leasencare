@@ -1,23 +1,564 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
+
+ <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FinancialService",
+    "name": "레이 중고 리스 전문 플랫폼",
+    "description": "2026년 최신 기아 레이 중고차 리스 가격 비교 및 견적 정보 제공. 다양한 리스 상품과 할인 혜택, 전문 업체 순위 비교를 통해 최적의 레이 리스 상품을 찾아드립니다.",
+    "url": "https://www.example.com/kia-ray-used-lease-2026",
+    "telephone": "02-XXX-XXXX",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "서울특별시 강남구 테헤란로 XXXXX",
+      "addressLocality": "강남구",
+      "addressRegion": "서울특별시",
+      "postalCode": "062XX",
+      "addressCountry": "KR"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "기아 레이 중고 리스 상품",
+      "itemListElement": [
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"레이 스탠다드 중고 장기 리스"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"레이 프레스티지 중고 단기 리스"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"레이 EV 중고 리스 (보조금 포함)"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"레이 밴 중고 리스 (사업자 전용)"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"레이 풀옵션 중고 리스"}}
+      ]
+    }
+  }
+  </script>
+
+  <style>
+    /* 기본 글꼴과 색상 조화로운 부드러운 톤 적용 */
+    body {
+      font-family: 'Noto Sans KR', 'Arial', sans-serif;
+      margin: 0; padding: 0;
+      background: #f7f9fc; /* 부드러운 배경색 */
+      color: #333333; /* 기본 텍스트 색상 */
+      line-height: 1.8; /* 가독성을 위한 줄 간격 */
+    }
+    header, section, footer {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px;
+      background: #ffffff;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* 부드러운 그림자 효과 */
+      border-radius: 12px; /* 둥근 모서리 */
+    }
+    header {
+      padding-top: 30px;
+    }
+    h1, h2, h3 {
+      color: #1a3c58; /* 깊은 파란색 계열 */
+      margin-top: 1.5em;
+      margin-bottom: 0.8em;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+    }
+    h2 {
+      font-size: 2rem;
+      border-bottom: 2px solid #e0eaf1; /* 섹션 구분선 */
+      padding-bottom: 10px;
+    }
+    p, li {
+      font-size: 1.05rem;
+      color: #4f5f6b; /* 부드러운 회색 텍스트 */
+      margin-bottom: 1.2em;
+    }
+    nav ul {
+      display: flex;
+      gap: 20px;
+      padding-left: 0;
+      list-style: none;
+      justify-content: center;
+      margin-bottom: 2.0em;
+      border-top: 1px solid #e0eaf1;
+      border-bottom: 1px solid #e0eaf1;
+      padding: 15px 0;
+    }
+    nav li {
+      position: relative;
+    }
+    nav a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #4a7c9d; /* 부드러운 파란색 링크 */
+      transition: color 0.3s ease, transform 0.3s ease;
+      font-size: 1.05rem;
+    }
+    nav a:hover {
+      color: #2b5c7f;
+      transform: translateY(-2px);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 25px 0;
+      font-size: 1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      border-radius: 8px;
+      overflow: hidden; /* 테이블 둥근 모서리 적용 */
+    }
+    th, td {
+      border: 1px solid #f0f0f0;
+      padding: 15px 20px;
+      text-align: left;
+    }
+    th {
+      background-color: #f7f9fc;
+      color: #1a3c58;
+      font-weight: 700;
+      text-align: center;
+    }
+    tr:nth-child(even) {
+      background-color: #fcfcfc;
+    }
+    /* 이미지 스타일 */
+    .image-container {
+      margin: 30px 0;
+      text-align: center;
+    }
+    .image-container img {
+      width: 100%;
+      max-width: 800px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    /* 인풋 필드 그룹핑 및 스타일 */
+    .input-section {
+      margin-top: 25px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+    }
+    .input-group {
+      flex: 1 1 45%; /* 두 컬럼 레이아웃 */
+      display: flex;
+      flex-direction: column;
+    }
+    .input-group.full-width {
+      flex: 1 1 100%;
+    }
+    label {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #1a3c58;
+      font-size: 0.95rem;
+    }
+    input[type="text"], input[type="tel"], input[type="email"], select, textarea {
+      padding: 12px;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      background-color: #fafafa;
+    }
+    input[type="text"]:focus, input[type="tel"]:focus, input[type="email"]:focus, select:focus, textarea:focus {
+      border-color: #4a7c9d;
+      box-shadow: 0 0 5px rgba(74, 124, 157, 0.2);
+      outline: none;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    button.cta-btn {
+      background-color: #4a7c9d; /* 메인 CTA 색상 */
+      color: white;
+      padding: 16px 35px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      align-self: flex-start;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+    button.cta-btn:hover {
+      background-color: #2b5c7f;
+      transform: translateY(-2px);
+    }
+    /* 그래프 스타일 */
+    .chart-container {
+      margin: 40px 0;
+      padding: 20px;
+      background: #fcfcfc;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+      max-width: 100%;
+      overflow-x: auto;
+    }
+    /* FAQ 스타일 */
+    .faq .item {
+      border-bottom: 1px solid #e0eaf1;
+      padding: 18px 0;
+    }
+    .faq .item:last-child {
+      border-bottom: none;
+    }
+    .faq h3 {
+      cursor: pointer;
+      color: #1a3c58;
+      font-weight: 700;
+      margin: 0;
+      padding-bottom: 8px;
+      position: relative;
+    }
+    .faq h3:after {
+        content: '+';
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 1.2rem;
+        transition: transform 0.3s ease;
+    }
+    .faq h3.active:after {
+        content: '-';
+        transform: rotate(180deg);
+    }
+    .faq p {
+      margin: 10px 0 0 0;
+      color: #555;
+      display: none;
+      padding-left: 15px;
+      border-left: 3px solid #f0f0f0;
+    }
+    /* 링크 스타일 */
+    a.external-link {
+      color: #4a7c9d;
+      text-decoration: none;
+      border-bottom: 1px solid #4a7c9d;
+      transition: color 0.3s ease;
+    }
+    a.external-link:hover {
+      color: #2b5c7f;
+    }
+    /* 강조 텍스트 */
+    .highlight {
+      font-weight: bold;
+      color: #c0392b; /* 빨간색 계열 강조 */
+    }
+    /* 섹션 내용 스타일링 */
+    section { padding: 30px 40px; }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 0.8em; }
+  </style>
+
+  <script>
+    // FAQ toggle 기능
+    document.addEventListener('DOMContentLoaded', () => {
+      const faqItems = document.querySelectorAll('.faq .item h3');
+      faqItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const content = item.nextElementSibling;
+          const isActive = item.classList.contains('active');
+
+          // 모든 FAQ 항목 닫기
+          document.querySelectorAll('.faq .item h3').forEach(h => h.classList.remove('active'));
+          document.querySelectorAll('.faq .item p').forEach(p => p.style.display = 'none');
+
+          // 클릭한 항목 토글
+          if (!isActive) {
+            item.classList.add('active');
+            content.style.display = 'block';
+          }
+        });
+      });
+    });
+  </script>
+
+</head>
+<body>
+
+  <header>
+    <h1>2026년 레이 중고 리스 가격 및 견적 비교: 저렴한 곳 추천 전문 센터</h1>
+    <p>경제적인 선택, <span class="highlight">레이 중고 리스</span>의 모든 것을 분석합니다. 2026년 최신 시장 동향을 반영한 견적 비교, 장단점 분석, 그리고 <span class="highlight">저렴한 리스</span> 상품을 찾는 노하우를 제공합니다. 사업자 및 개인에게 모두 유리한 <span class="highlight">레이 중고 리스</span> 상품을 지금 바로 확인해 보세요.</p>
     <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+      <ul>
+        <li><a href="#overview">개요 및 장점</a></li>
+        <li><a href="#types-comparison">모델 및 상품 비교</a></li>
+        <li><a href="#pricing-analysis">견적 및 비용 분석</a></li>
+        <li><a href="#saving-tips">절감 노하우</a></li>
+        <li><a href="#faq">자주 묻는 질문</a></li>
+        <li><a href="#contact">견적 문의</a></li>
+      </ul>
     </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+  </header>
+
+  <section id="overview">
+    <h2>레이 중고 리스, 현명한 선택의 시작</h2>
+    <p>기아 <span class="highlight">레이</span>는 실용적인 경차로 오랜 기간 사랑받아 왔습니다. 넉넉한 실내 공간과 뛰어난 활용성을 자랑하며, 최근에는 <span class="highlight">레이 EV</span> 모델까지 출시되어 선택의 폭이 넓어졌습니다. 특히 중고차 시장에서 <span class="highlight">레이</span>는 높은 감가율 방어와 안정적인 시세로 인기가 높습니다.</p>
+    <p>하지만 <span class="highlight">중고차</span> 구매 시 초기 목돈 지출과 복잡한 할부 과정을 피하고 싶은 고객들에게 <span class="highlight">레이 중고 리스</span>는 매력적인 대안으로 떠오르고 있습니다. <span class="highlight">레이 중고 리스</span>는 신차 리스 대비 훨씬 <span class="highlight">저렴한 가격</span>에 차량을 이용할 수 있으며, 월 납입금이 합리적이어서 개인과 <span class="highlight">사업자</span> 모두에게 유리합니다. 2026년 현재 시장에서는 다양한 <span class="highlight">레이 중고 리스 상품</span>이 경쟁적으로 출시되고 있으며, <span class="highlight">비교 견적</span>을 통해 <span class="highlight">최저가</span>를 찾는 것이 중요합니다.</p>
+
+    <h3>레이 중고 리스의 장점 (장기 리스 vs. 구매 vs. 렌트)</h3>
+    <ul>
+      <li><strong>초기 비용 절감:</strong> 신차 리스나 <span class="highlight">중고차 구매</span> 시 발생하는 초기 목돈(보증금, 취등록세 등) 부담을 최소화할 수 있습니다. <span class="highlight">레이 중고 리스</span>의 경우 <span class="highlight">보증금</span> 없이도 진행 가능한 상품이 많습니다.</li>
+      <li><strong>세금 절감 효과 (사업자 리스):</strong> <span class="highlight">사업자</span>의 경우 <span class="highlight">레이 중고 리스</span> 월 납입금 전액을 비용으로 처리하여 <span class="highlight">세금 절감 혜택</span>을 받을 수 있습니다. 이는 특히 <span class="highlight">레이 밴</span> 모델을 업무용으로 활용하는 <span class="highlight">소상공인</span>에게 큰 장점입니다.</li>
+      <li><strong>차량 관리 편리성:</strong> 리스사에서 제공하는 정비 서비스나 보험 상품을 활용하면 차량 유지 관리에 대한 부담을 줄일 수 있습니다. 만기 시 차량을 <span class="highlight">반납</span>할 수 있어 감가상각에 대한 걱정이 없습니다.</li>
+      <li><strong>신용도 영향 최소화:</strong> <span class="highlight">중고차 할부</span>와 달리 리스는 금융권 대출로 잡히지 않아 신용점수 하락에 미치는 영향이 적습니다 (단, 리스 심사 과정은 필요).</li>
+    </ul>
+
+    <h3>레이 중고 리스의 단점 및 주의사항</h3>
+    <ul>
+      <li><strong>만기 시 선택 제한:</strong> 리스 만기 시 차량을 <span class="highlight">인수</span>하거나 <span class="highlight">반납</span>해야 합니다. 인수를 원할 경우 추가적인 <span class="highlight">잔존가치</span> 금액을 지불해야 합니다.</li>
+      <li><strong>약정 주행거리 초과 시 불이익:</strong> <span class="highlight">레이 중고 리스</span> 계약 시 약정된 연간 주행거리를 초과할 경우 <span class="highlight">패널티 비용</span>이 발생합니다. <span class="highlight">개인</span>의 경우 운행 패턴을 정확히 파악하여 계약해야 합니다.</li>
+      <li><strong>중도 해지 수수료:</strong> 계약 기간 내 <span class="highlight">중도 해지</span> 시 위약금이 발생합니다. <span class="highlight">리스</span> 계약은 신중하게 결정해야 합니다.</li>
+    </ul>
+  </section>
+
+  <section id="types-comparison">
+    <h2>레이 모델별 중고 리스 상품 비교 (2026년 기준)</h2>
+    <p>레이는 다양한 모델과 트림으로 출시되어 있으며, 각 모델별로 <span class="highlight">중고 리스</span> 견적이 다릅니다. 특히 <span class="highlight">레이 가솔린</span> 모델은 초기 가격이 저렴한 반면, <span class="highlight">레이 EV</span> 모델은 정부 <span class="highlight">보조금</span> 혜택이 적용되어 신차 대비 중고 리스 시점의 가격 변동폭이 클 수 있습니다. <span class="highlight">2026년</span> 시장에서는 <span class="highlight">레이 EV</span>의 중고 리스 상품이 증가할 것으로 예상됩니다.</p>
+    <div class="image-container">
+      <!-- Pexels.com에서 "Kia Ray" 또는 "car lease" 관련 이미지 사용 권장 -->
+      <img src="https://images.pexels.com/photos/1089902/pexels-photo-1089902.jpeg?auto=compress&cs=tinysrgb&w=800" alt="레이 중고차 이미지">
+    </div>
+    <p>아래 표는 <span class="highlight">2026년</span> 기준 <span class="highlight">레이</span>의 주요 중고 모델별 <span class="highlight">리스</span> 견적을 비교한 것입니다. <span class="highlight">리스</span> <span class="highlight">가격</span>은 차량 연식, 주행거리, 사고 유무에 따라 크게 달라지므로 <span class="highlight">정확한 견적</span>을 위해서는 문의가 필요합니다.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>모델</th>
+          <th>월 리스료 (평균)</th>
+          <th>연식/주행거리 (예시)</th>
+          <th>특징 및 추천 대상</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>레이 스탠다드</strong></td>
+          <td>18만 원 ~ 25만 원</td>
+          <td>2022년식 / 4만 km</td>
+          <td>가성비가 뛰어난 모델. <span class="highlight">사회 초년생</span> 및 <span class="highlight">저렴한 리스</span>를 찾는 <span class="highlight">개인</span>에게 적합합니다.</td>
+        </tr>
+        <tr>
+          <td><strong>레이 프레스티지</strong></td>
+          <td>22만 원 ~ 30만 원</td>
+          <td>2023년식 / 2만 km</td>
+          <td>풀옵션에 가까운 옵션 선호자. 주행 편의 기능이 강화된 모델을 선호하는 고객에게 추천합니다.</td>
+        </tr>
+        <tr>
+          <td><strong>레이 밴 (사업자 전용)</strong></td>
+          <td>20만 원 ~ 28만 원</td>
+          <td>2022년식 / 3만 km</td>
+          <td><span class="highlight">소상공인</span> 및 <span class="highlight">배달 대행</span> 사업자에게 최적화된 모델. <span class="highlight">세금 절감 효과</span>가 뛰어납니다.</td>
+        </tr>
+        <tr>
+          <td><strong>레이 EV</strong></td>
+          <td>28만 원 ~ 38만 원</td>
+          <td>2024년식 / 1만 km</td>
+          <td>전기차 특유의 <span class="highlight">저렴한 유지비</span>와 <span class="highlight">보조금 혜택</span>을 누릴 수 있습니다. <span class="highlight">단기 리스</span>로 전기차 경험을 원하는 고객에게 적합합니다.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>레이 중고 리스 vs. 중고차 할부 vs. 신차 리스 비교</h3>
+    <p>레이 차량을 이용하는 방법은 다양합니다. 신차를 할부로 구매하거나, 중고차를 직접 구매하거나, 혹은 <span class="highlight">신차 리스</span>를 이용할 수도 있습니다. <span class="highlight">레이 중고 리스</span>는 이 세 가지 선택지 사이에서 합리적인 중간 지점을 제공합니다. 신차 리스 대비 월 납입금이 저렴하고, 중고차 할부 대비 초기 비용 부담이 적으며, 차량 관리가 편리합니다.</p>
+    <p>특히 <span class="highlight">레이 EV</span> 모델은 중고 시장에서 <span class="highlight">배터리 잔존가치</span>에 대한 불확실성 때문에 <span class="highlight">중고 리스</span>로 이용하는 것이 유리할 수 있습니다. 리스사가 배터리 감가상각을 책임지므로, 고객은 만기 시 부담 없이 반납하고 신차로 갈아탈 수 있습니다. 이는 <span class="highlight">리스 장점</span> 중 하나입니다.</p>
+
+  </section>
+
+  <section id="pricing-analysis">
+    <h2>레이 중고 리스 견적 분석 및 비용 절감 노하우</h2>
+    <p><span class="highlight">레이 중고 리스 견적</span>은 단순히 월 납입금만으로 판단하기 어렵습니다. 총 비용을 결정하는 주요 요소로는 <span class="highlight">차량가액</span> (중고차 시세), <span class="highlight">리스 이자율</span> (금리), <span class="highlight">잔존가치</span>, <span class="highlight">리스 기간</span>, 그리고 <span class="highlight">보증금</span> 유무가 있습니다. <span class="highlight">2026년</span> 기준으로 <span class="highlight">금리</span> 변동성이 크기 때문에, 견적 비교 시 <span class="highlight">총 리스 비용</span>을 면밀히 검토해야 합니다.</p>
+
+    <h3>1. 잔존가치와 월 납입금의 관계</h3>
+    <p><span class="highlight">레이 중고 리스</span> 견적에서 가장 중요한 요소 중 하나는 <span class="highlight">잔존가치</span>입니다. <span class="highlight">잔존가치</span>는 리스 기간이 끝났을 때 차량의 예상 가치를 의미합니다. 잔존가치가 높게 책정될수록 월 납입금은 낮아지지만, 만기 시 <span class="highlight">인수</span> 부담금이 높아집니다. <span class="highlight">저렴한 리스</span> 상품을 찾을 때 월 납입금이 낮아 보일지라도, 만기 시 <span class="highlight">잔존가치</span>와 <span class="highlight">인수 금액</span>을 반드시 확인해야 합니다.</p>
+
+    <h3>2. 리스 기간 및 보증금 설정 방법</h3>
+    <p>일반적으로 <span class="highlight">리스 기간</span>이 길어질수록 월 납입금은 낮아집니다. <span class="highlight">레이 중고 장기 리스</span> (36개월 또는 48개월)는 월 비용을 줄이는 데 유리합니다. 반대로 <span class="highlight">단기 리스</span> (12개월 또는 24개월)는 <span class="highlight">레이</span>를 빠르게 교체하거나 시범 운행하려는 고객에게 적합하지만 월 납입금은 상대적으로 높습니다. <span class="highlight">보증금</span>을 높게 설정하면 <span class="highlight">리스 이자율</span>이 낮아져 총 비용을 절감할 수 있으나, 초기 목돈 지출이 발생합니다. <span class="highlight">사업자</span>의 경우 <span class="highlight">보증금</span> 설정 방식을 <span class="highlight">리스 업체</span>와 상담하여 <span class="highlight">세금 처리</span>에 유리한 방향으로 선택해야 합니다.</p>
+
+    <h3>3. 리스사별 금리 비교 및 할인 혜택</h3>
+    <p><span class="highlight">레이 중고 리스</span> 견적을 비교할 때 <span class="highlight">금리</span> 차이가 총 비용에 미치는 영향은 상당합니다. <span class="highlight">캐피탈사</span>, <span class="highlight">렌탈 업체</span>, <span class="highlight">보험사</span> 등 다양한 <span class="highlight">리스 업체</span>가 경쟁적으로 상품을 출시하고 있으며, 업체별로 금리 정책이 다릅니다. <span class="highlight">저렴한 곳</span>을 찾으려면 <span class="highlight">신규 가입 혜택</span>, <span class="highlight">프로모션</span>, <span class="highlight">할인 이벤트</span> 등을 활용해야 합니다. <span class="highlight">AI 기반</span> <span class="highlight">빅데이터</span> 분석을 통해 <span class="highlight">최저가 견적</span>을 실시간으로 비교해주는 서비스도 많습니다.</p>
+
+    <div class="chart-container">
+      <canvas id="leaseChart" width="800" height="400" aria-label="레이 중고 리스 기간별 월 납입금 비교 그래프" role="img"></canvas>
+    </div>
+    <p>위 그래프는 <span class="highlight">레이 스탠다드</span> 중고 모델을 기준으로 리스 기간에 따른 월 납입금 변화를 시각화한 것입니다. 기간이 길어질수록 월 납입금은 낮아지지만, 총 비용은 증가할 수 있으므로 <span class="highlight">만기 시점</span>을 고려한 신중한 선택이 필요합니다.</p>
+  </section>
+
+  <section id="saving-tips">
+    <h2>레이 중고 리스 비용 절감을 위한 핵심 노하우</h2>
+    <p><span class="highlight">레이 중고 리스</span>를 <span class="highlight">저렴하게</span> 이용하기 위해서는 몇 가지 핵심적인 노하우가 필요합니다. 단순한 <span class="highlight">가격 비교</span>를 넘어, 계약 조건과 서비스 내용을 꼼꼼히 따져봐야 합니다. <span class="highlight">레이</span>와 같은 인기 모델은 경쟁이 치열하여 <span class="highlight">프로모션</span> 혜택이 자주 변경되므로 <span class="highlight">전문 업체</span>의 조언을 받는 것이 유리합니다.</p>
+    <ul>
+      <li><strong>정확한 주행거리 산정:</strong> <span class="highlight">레이</span>의 주된 용도(단거리 출퇴근, 업무용, 가족용)에 따라 연간 <span class="highlight">주행거리</span>를 정확히 예상해야 합니다. 약정 주행거리를 넉넉하게 잡으면 월 납입금이 올라가고, 너무 적게 잡으면 만기 시 <span class="highlight">패널티</span>를 물 수 있습니다.</li>
+      <li><strong>다양한 모델 비교:</strong> <span class="highlight">레이 스탠다드</span>, <span class="highlight">레이 프레스티지</span>, <span class="highlight">레이 밴</span> 등 모델별 <span class="highlight">중고차 시세</span>와 <span class="highlight">리스 이자율</span>을 비교합니다. <span class="highlight">레이 밴</span>은 <span class="highlight">사업자</span>에게 유리하며, <span class="highlight">레이 EV</span>는 주행거리가 긴 고객에게 유리합니다.</li>
+      <li><strong>리스사별 프로모션 확인:</strong> <span class="highlight">신규 가입 혜택</span>, <span class="highlight">선착순 할인</span>, 특정 기간 한정 <span class="highlight">현금 지원</span>, <span class="highlight">사은품 증정</span> 등 다양한 <span class="highlight">이벤트</span>를 확인합니다. 네이버, 구글, 유튜브 등 다양한 채널에서 <span class="highlight">실시간 견적</span>을 비교해 보세요.</li>
+      <li><strong>보증금 설정 전략:</strong> <span class="highlight">보증금</span>을 내지 않는 무보증 리스 상품도 많지만, 여유 자금이 있다면 <span class="highlight">보증금</span>을 일부 납부하여 월 납입금을 낮추는 것이 <span class="highlight">총 리스 비용</span> 절감에 유리합니다.</li>
+      <li><strong>만기 시점 고려:</strong> 만기 시 <span class="highlight">인수</span>를 원하면 <span class="highlight">잔존가치</span>가 낮게 책정된 상품을, <span class="highlight">반납</span>을 원하면 잔존가치가 높게 책정된 상품을 선택합니다.</li>
+    </ul>
+
+    <h3>레이 중고 리스 내돈내산 후기 및 업체 추천</h3>
+    <p><span class="highlight">레이 중고 리스</span>를 고민하는 고객들은 <span class="highlight">내돈내산 후기</span>나 <span class="highlight">디시인사이드</span>, <span class="highlight">유튜브</span> 등 커뮤니티에서 정보를 얻는 경우가 많습니다. <span class="highlight">후기</span>를 살펴보면 특정 <span class="highlight">리스 업체</span>의 장단점과 실제 <span class="highlight">견적</span> <span class="highlight">금액</span>을 파악할 수 있습니다.</p>
+    <p><strong>후기 요약:</strong> "월 납입금이 <span class="highlight">예상</span>보다 <span class="highlight">저렴</span>해서 만족스러웠습니다. 다만, <span class="highlight">레이 밴 리스</span>를 이용할 때 <span class="highlight">보험료</span>가 별도라는 점을 놓쳐서 추가 지출이 발생했어요. <span class="highlight">전문 업체</span>와 꼼꼼하게 상담하는 것이 중요합니다." (출처: 온라인 <span class="highlight">커뮤니티</span>) <span class="highlight">ChatGPT</span>나 <span class="highlight">Gemini</span>와 같은 <span class="highlight">AI</span> 에이전트에게도 견적 비교를 요청하면 도움이 될 수 있습니다.</p>
+  </section>
+
+  <section id="faq" class="faq">
+    <h2>레이 중고 리스 자주 묻는 질문 (FAQ)</h2>
+    <div class="item">
+      <h3>Q1: 레이 중고 리스 vs. 중고차 할부, 어떤 것을 선택해야 할까요?</h3>
+      <p>A: <span class="highlight">레이 중고 리스</span>는 초기 비용 부담을 줄이고 <span class="highlight">세금 절감 효과</span>(사업자)를 원하는 고객에게 유리합니다. <span class="highlight">중고차 할부</span>는 차량을 소유하고 싶고, 만기 시 <span class="highlight">인수</span>를 통해 추가 비용 없이 자유롭게 처분하려는 고객에게 적합합니다.</p>
+    </div>
+    <div class="item">
+      <h3>Q2: 레이 중고 리스 이용 시 보험 가입은 어떻게 되나요?</h3>
+      <p>A: <span class="highlight">리스</span> 차량의 <span class="highlight">보험</span>은 리스 상품에 따라 다릅니다. 대부분의 <span class="highlight">레이 중고 리스</span> 상품은 고객이 직접 보험을 가입해야 합니다. 리스 견적에 <span class="highlight">보험료</span>가 포함되는지 여부를 꼼꼼히 확인하세요. <span class="highlight">전문 업체</span>에서는 보험 가입 절차를 안내해 줍니다.</p>
+    </div>
+    <div class="item">
+      <h3>Q3: 레이 중고 리스 만기 시 인수를 할 수 있나요?</h3>
+      <p>A: 네, 계약 시 설정한 <span class="highlight">잔존가치</span> 금액을 납부하고 <span class="highlight">인수</span>할 수 있습니다. <span class="highlight">레이</span>와 같은 인기 모델은 만기 시점의 <span class="highlight">중고 시세</span>가 잔존가치보다 높을 경우 <span class="highlight">인수</span>하여 다시 판매하는 것도 고려할 수 있습니다.</p>
+    </div>
+    <div class="item">
+      <h3>Q4: 신용도가 낮아도 레이 중고 리스가 가능한가요?</h3>
+      <p>A: <span class="highlight">리스 업체</span>마다 신용 심사 기준이 다릅니다. 신용도가 낮거나 소득 증빙이 어려운 경우 <span class="highlight">보증금</span>을 높이거나 심사 기준이 낮은 <span class="highlight">리스 업체</span>를 찾아야 합니다. <span class="highlight">전문 업체</span>에 문의하면 고객의 상황에 맞는 <span class="highlight">맞춤형 심사</span>를 도와줍니다.</p>
+    </div>
+    <div class="item">
+      <h3>Q5: 레이 중고 리스 이용 시 <span class="highlight">사은품</span>이나 <span class="highlight">현금 지원</span>을 받을 수 있나요?</h3>
+      <p>A: <span class="highlight">리스 업체</span>에서는 경쟁적으로 <span class="highlight">현금 지원</span>, <span class="highlight">상품권 증정</span>, <span class="highlight">사은품</span> <span class="highlight">혜택</span> 등을 제공하는 경우가 많습니다. <span class="highlight">신규 가입</span> 프로모션이나 <span class="highlight">이벤트</span> 기간을 활용하면 <span class="highlight">총 리스 비용</span>을 더욱 절감할 수 있습니다.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>레이 중고 리스 맞춤 견적 문의</h2>
+    <p><span class="highlight">레이 중고 리스</span>는 고객의 운행 패턴, 재정 상황, 선호 모델에 따라 <span class="highlight">견적</span>이 크게 달라집니다. 아래 양식을 작성하시면 <span class="highlight">레이 중고 리스 전문 상담사</span>가 고객님께 딱 맞는 <span class="highlight">최저가 견적</span>을 찾아드립니다. <span class="highlight">신속한 견적</span> 비교를 통해 <span class="highlight">저렴한 리스</span> 상품을 만나보세요.</p>
+    <form action="/submit-lease-quote" method="post" aria-label="레이 중고 리스 견적 문의 폼">
+      <div class="input-section">
+        <div class="input-group">
+          <label for="contactName">담당자명/신청자명</label>
+          <input type="text" id="contactName" name="contactName" required />
+        </div>
+        <div class="input-group">
+          <label for="phoneNumber">연락처</label>
+          <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{3}-[0-9]{3,4}-[0-9]{4}" placeholder="예: 010-1234-5678" required />
+        </div>
+        <div class="input-group">
+          <label for="email">이메일 주소</label>
+          <input type="email" id="email" name="email" placeholder="example@company.com" required />
+        </div>
+        <div class="input-group">
+          <label for="vehicleModel">희망 모델 (차량 종류)</label>
+          <select id="vehicleModel" name="vehicleModel" required>
+            <option value="" disabled selected>선택하세요</option>
+            <option value="ray-standard">레이 스탠다드</option>
+            <option value="ray-prestige">레이 프레스티지</option>
+            <option value="ray-van">레이 밴</option>
+            <option value="ray-ev">레이 EV</option>
+            <option value="other">기타 모델 (옵션 문의)</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="leaseDuration">희망 리스 기간 (개월)</label>
+          <select id="leaseDuration" name="leaseDuration" required>
+            <option value="" disabled selected>선택하세요</option>
+            <option value="12">12개월</option>
+            <option value="24">24개월 (단기 리스)</option>
+            <option value="36">36개월 (장기 리스)</option>
+            <option value="48">48개월</option>
+            <option value="60">60개월 이상</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="depositType">보증금/선납금 여부</label>
+          <select id="depositType" name="depositType" required>
+            <option value="" disabled selected>선택하세요</option>
+            <option value="none">무보증 (보증금/선납금 없음)</option>
+            <option value="deposit">보증금 있음 (별도 문의)</option>
+            <option value="prepayment">선납금 있음 (별도 문의)</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="annualMileage">연간 예상 주행거리 (km)</label>
+          <input type="text" id="annualMileage" name="annualMileage" placeholder="예: 15000" required />
+        </div>
+        <div class="input-group">
+          <label for="purpose">이용 목적</label>
+          <select id="purpose" name="purpose" required>
+            <option value="" disabled selected>선택하세요</option>
+            <option value="personal">개인 용도</option>
+            <option value="business">사업자 업무 용도</option>
+          </select>
+        </div>
+        <div class="input-group full-width">
+          <label for="additionalInfo">추가 문의 사항 (원하는 옵션, <span class="highlight">현금 지원</span>, <span class="highlight">사은품</span> 등)</label>
+          <textarea id="additionalInfo" name="additionalInfo" rows="4" placeholder="특별히 알고 싶은 사항이나 요청 사항을 적어주세요. 예: 레이 풀옵션 견적, 무보증 리스 문의"></textarea>
+        </div>
+      </div>
+      <button type="submit" class="cta-btn">맞춤 견적 요청하기</button>
+    </form>
+  </section>
+
+  <section id="external-resources">
+    <h2>신뢰할 수 있는 외부 참고자료 및 연관 검색 키워드</h2>
+    <p><span class="highlight">레이 중고 리스</span>와 관련하여 더 깊이 있는 정보나 <span class="highlight">공인된 통계</span>, <span class="highlight">법규</span>가 궁금하다면 아래 사이트를 참고하세요. <span class="highlight">네이버</span>, <span class="highlight">구글</span>에서 <span class="highlight">검색</span> 시 유용한 <span class="highlight">연관 키워드</span>와 <span class="highlight">함께 많이 찾는 키워드</span>를 포함했습니다.</p>
+    <ul>
+      <li><a href="https://www.car.go.kr" target="_blank" rel="noopener" class="external-link">국토교통부 자동차민원 대국민포털 (자동차 등록, 명의이전, 폐차 관련 법규 확인)</a></li>
+      <li><a href="https://www.kiri.or.kr" target="_blank" rel="noopener" class="external-link">보험연구원 (자동차 보험료 및 시장 통계 자료)</a></li>
+      <li><a href="https://www.namu.wiki/w/%EA%B8%B0%EC%95%84%20%EB%A0%88%EC%9D%B4" target="_blank" rel="noopener" class="external-link">나무위키: 기아 레이 (모델별 상세 정보 및 역사)</a></li>
+      <li><a href="https://www.molit.go.kr" target="_blank" rel="noopener" class="external-link">국토교통부 (교통 및 자동차 관련 정책)</a></li>
+      <li><a href="https://www.kofia.or.kr/index.do" target="_blank" rel="noopener" class="external-link">여신금융협회 (리스 및 금융 상품 관련 정보)</a></li>
+      <li><a href="https://www.kia.com/kr/vehicles/ray.html" target="_blank" rel="noopener" class="external-link">기아 공식 홈페이지 (신차 정보 및 모델 상세 스펙)</a></li>
+    </ul>
+    <h3>함께 많이 찾는 키워드 (연관 검색어)</h3>
+    <p>레이 리스 장단점, 레이 중고차 <span class="highlight">금액</span>, 레이 <span class="highlight">예상</span> <span class="highlight">견적</span>, <span class="highlight">레이 중고 리스</span> <span class="highlight">최저가</span> <span class="highlight">업체</span> <span class="highlight">순위</span>, <span class="highlight">레이 중고 리스</span> <span class="highlight">디시</span> 후기, <span class="highlight">레이</span> <span class="highlight">신규 가입</span> 혜택, <span class="highlight">레이</span> <span class="highlight">할인</span> 프로모션, <span class="highlight">레이</span> <span class="highlight">사은품</span> <span class="highlight">현금 지원</span>, <span class="highlight">레이</span> <span class="highlight">가입</span> <span class="highlight">추천</span>, <span class="highlight">레이</span> <span class="highlight">견적</span> <span class="highlight">비용</span> <span class="highlight">차이점</span>, <span class="highlight">레이</span> <span class="highlight">저렴한곳</span> <span class="highlight">싼곳</span>.</p>
+  </section>
+
+  <!-- Chart.js 라이브러리 로드 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('leaseChart').getContext('2d');
+    const insuranceChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['12개월 (단기)', '24개월', '36개월 (장기)', '48개월'],
+        datasets: [{
+          label: '월 납입금 (만원)',
+          data: [30, 25, 20, 18],
+          backgroundColor: ['#4a7c9d', '#2b5c7f', '#1a3c58', '#0f2c42'],
+          borderRadius: 6,
+          borderWidth: 1,
+          borderColor: '#1a3c58',
+          hoverBackgroundColor: '#1a3c58'
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              stepSize: 5,
+              callback: value => value + '만 원'
+            },
+            title: {
+              display: true,
+              text: '월 납입금 (만원)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: '리스 기간'
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            callbacks: {
+              label: context => context.parsed.y + '만 원'
+            }
+          }
+        }
+      }
+    });
+  </script>
+  
